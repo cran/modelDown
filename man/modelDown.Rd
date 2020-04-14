@@ -6,7 +6,7 @@
 \usage{
 modelDown(..., modules = c("auditor", "drifter", "model_performance",
   "variable_importance", "variable_response"), output_folder = "output",
-  repository_name = "repository", should_open_website = TRUE)
+  repository_name = "repository", should_open_website = interactive())
 }
 \arguments{
 \item{...}{one or more explainers created with \code{DALEX::explain()} function. Pair of explainer could be provided to check drift of models}
@@ -32,8 +32,8 @@ Additional arguments that could by passed by name:
 }
 }
 \examples{
-
-require("DALEX")
+\donttest{
+require("ranger")
 require("breakDown")
 require("DALEX")
 
@@ -52,7 +52,6 @@ modelDown::modelDown(explainer_glm,
                      vr.vars= c("average_montly_hours"),
                      vr.type = "ale")
 
-\donttest{
 # More complex example with all modules
 HR_ranger_model <- ranger(as.factor(left) ~ .,
                       data = HR_data, num.trees = 500, classification = TRUE, probability = TRUE)
